@@ -111,10 +111,19 @@ function getPasswordOptions() {
   // parseInt makes the input value a number
   characterLengthPrompt = parseInt(prompt('How many characters do you want in your password? Please choose a number between 10 and 64'));
 
-  if (isNaN(characterLengthPrompt) || characterLengthPrompt < 10 || characterLengthPrompt > 64) {
-    alert("Ooops, it looks like you entererd an invalid number or letter. Please enter a number between 10 and 64 to choose the length of your password.");
+  while(isNaN(characterLengthPrompt) || characterLengthPrompt < 10 || characterLengthPrompt > 64) {
+    characterLengthPrompt = parseInt(prompt("Ooops, it looks like you entererd an invalid number or letter. Please enter a number between 10 and 64 to choose the length of your password."))
     // return False;
-  }
+  } 
+
+
+// if (characterLengthPrompt === null) {
+//     console.log("Prompt closed by user.");
+// }
+// else {
+//       break
+//     }
+
 
   if (confirm("Do you want to include special characters in your password?")) {
     promptChoices = promptChoices.concat(specialCharacters)
@@ -139,6 +148,14 @@ function getPasswordOptions() {
   return
 };
 
+
+// Randomised characters
+
+function getRandom() {
+  // String.lowerCasedCharacters(Math.random());
+  return promptChoices[Math.floor(Math.random() * promptChoices.length)];
+
+}
 
 // Do not touch
 
