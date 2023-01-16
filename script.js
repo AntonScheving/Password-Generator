@@ -1,5 +1,6 @@
 // Array of special characters to be included in password
-let specialCharacters = [
+// I choose to use the const variable because the characters do not change.
+const specialCharacters = [
   '@',
   '%',
   '+',
@@ -26,10 +27,10 @@ let specialCharacters = [
 ];
 
 // Array of numeric characters to be included in password
-let numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 // Array of lowercase characters to be included in password
-let lowerCasedCharacters = [
+const lowerCasedCharacters = [
   'a',
   'b',
   'c',
@@ -59,7 +60,7 @@ let lowerCasedCharacters = [
 ];
 
 // Array of uppercase characters to be included in password
-let upperCasedCharacters = [
+const upperCasedCharacters = [
   'A',
   'B',
   'C',
@@ -88,20 +89,58 @@ let upperCasedCharacters = [
   'Z'
 ];
 
+
+/* 
+1. Done: prompt the user for the password criteria
+      a. set password lenght 10 to 64
+      b.Lowercase, Uppercase, numbers & special characters
+2. Validate the input
+3. Generate password based on criteria
+4. Display the password on the page. This is the return
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
+*/
+
+let characterLength = 0;
+let characterLengthPrompt
+let promptChoices = [];
+let passwordLength = 0;
+
 // Function to prompt user for password options
+
 function getPasswordOptions() {
+  // parseInt makes the input value a number
+  characterLengthPrompt = parseInt(prompt('How many characters do you want in your password? Please choose a number between 10 and 64'));
 
-}
+  if (isNaN(characterLengthPrompt) || characterLengthPrompt < 10 || characterLengthPrompt > 64) {
+    alert("Ooops, it looks like you entererd an invalid number or letter. Please enter a number between 10 and 64 to choose the length of your password.");
+    // return False;
+  }
 
-// Function for getting a random element from an array
-function getRandom(arr) {
+  if (confirm("Do you want to include special characters in your password?")) {
+    promptChoices = promptChoices.concat(specialCharacters)
+  }
 
-}
+  if (confirm("Do you want to include numbers in your password?")) {
+    promptChoices = promptChoices.concat(numericCharacters)
+  }
 
-// Function to generate password with user input
-function generatePassword() {
+  if (confirm("Do you want to include lowercase letters in your password?")) {
+    promptChoices = promptChoices.concat(lowerCasedCharacters)
+  }
 
-}
+  if (confirm("Do you want to include uppercase letters in your password?")) {
+    promptChoices = promptChoices.concat(upperCasedCharacters)
+  }
+
+  if (promptChoices.length === 0) {
+    alert("Ooops, You must choose at least one character type. Please try again.");
+    // return false;
+  }
+  return
+};
+
+
+// Do not touch
 
 // Get references to the #generate element
 let generateBtn = document.querySelector('#generate');
@@ -116,3 +155,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+
