@@ -89,30 +89,32 @@ const upperCasedCharacters = [
   'Z'
 ];
 
+// The '= 0;' initialises the variables to zero.
 let characterLength = 0;
-let characterLengthPrompt
+let characterLengthPrompt = 0;
+// This variable is used to store the characters chosen by the user for the password. It is initialized as an empty array and will be filled later in the code.
 let promptChoices = [];
 let passwordLength = 0;
 
-// this is a function to prompt user for password options
+// this is a function to prompt user for password options.
 function getPasswordOptions() {
   // parseInt makes the input value a number.
-  // the values derived from the prompts are stored inside the characterLenghtPrompt variable
+  // the values derived from the prompts are stored inside the characterLenghtPrompt variable.
   characterLengthPrompt = parseInt(prompt('How many characters do you want in your password? Please choose a number between 10 and 64'));
-// The while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. The condition is evaluated before executing the statement. As long as the characterLengthPrompt variable is not returning as null, meaning the user has not clicked on the cancel button the function can go ahead.
+// The 'while' statement creates a loop that executes a specified statement as long as the test condition evaluates to true. The condition is evaluated before executing the statement. As long as the characterLengthPrompt variable is not returning as null, meaning the user has not clicked on the cancel button the function can go ahead.
   while (characterLengthPrompt !== null) {
-    // if the user inputs anumber below 10 or above 64 or any other caracter that is not a number the below message will be displayed.
+    // if the user inputs a number below 10 or above 64 or any other caracter that is not a number the below message will be displayed.
   if (isNaN(characterLengthPrompt) || characterLengthPrompt < 10 || characterLengthPrompt > 64) {
     characterLengthPrompt = parseInt(prompt("Ooops, it looks like you entered an invalid number or letter. Please enter a number between 10 and 64 to choose the length of your password."));
-    // The else statement is used to specify if the statement above is false then it will go ahead and execute the code below it. The break statement breaks out of the loop and continues executing the code after the loop.
+    // The 'else' statement is used to specify if the statement above is false then it will go ahead and execute the code below it. The 'break' statement breaks out of the loop and continues executing the code after the loop.
   } else{
     break;
   }
 }
 
-// The confirm() method displays a dialog box with a message, an OK button, and a Cancel button.
+// The 'confirm()' method displays a dialog box with a message, an OK button, and a Cancel button.
 if (confirm("Do you want to include special characters in your password?")) {
-  // the promptChoices variable is initialised to "nothing" when it is declared. The = adds the true or false value from the user input in the confirm window as the user clicks either cancel(false) or ok(true) stored in the promptChoices. If the promptChoice variable becomes true the concat combines the character type with the promptChoice variable.
+  // the 'promptChoices' variable is initialised to nothing when it is declared. The = adds the true or false value from the user input in the confirm window as the user clicks either cancel(false) or ok(true) stored in the promptChoices. If the promptChoice variable becomes true the 'concat' combines the character type with the 'promptChoices' variable.
   if (confirm){
   promptChoices = promptChoices.concat(specialCharacters)
 }
@@ -144,22 +146,24 @@ return;
 };
 
 // Randomised characters
-// After the promptChoices variable has been populated with the character types that the user wants to include in the password in the above function the math.random() element randomises wich characters are used in the password. Math.floor always rounds down and returns the largest integer less than or equal to a given number. * promptChoices.length ensures that the randomised characters are taken from the chosen pool of character types chosen by the user in the confirm windows.
+// After the 'promptChoices' variable has been populated with the character types that the user wants to include in the password in the above function the 'math.random()' element randomises wich characters are used in the password. 'Math.floor' always rounds down and returns the largest integer less than or equal to a given number. '* promptChoices.length' ensures that the randomised characters are taken from the chosen pool of character types chosen by the user in the confirm windows.
 function getRandom() {
   return promptChoices[Math.floor(Math.random() * promptChoices.length)];
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  // Here is where the function getPasswordOptions is connected to the function generatePassword
+  // Here is where the function 'getPasswordOptions' is connected to the function 'generatePassword'. 'getPasswordOptions()' function is called to execute and gather the user's input for the password length and character choices in the 'generatePassword' function.
   getPasswordOptions();
 
+  // displayPassword is declared and assigned a empty string value.
   let displayPassword = ""
-
+// A for loop is used to generate the password. The loop will run for as many iterations as the value of the 'characterLengthPrompt' variable, which is the length of the password entered by the user.
   for (let i = 0; i < characterLengthPrompt; i++) {
-
+// The += operator adds the random caracters in 'getRandom' to 'displayPassword'.
     displayPassword += getRandom();
   }
+  // The final password is returned
   return displayPassword;
 }
 
