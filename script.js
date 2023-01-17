@@ -95,9 +95,8 @@ let promptChoices = [];
 let passwordLength = 0;
 
 // this is a function to prompt user for password options
-
 function getPasswordOptions() {
-  // parseInt makes the input value a number
+  // parseInt makes the input value a number.
   // the values derived from the prompts are stored inside the characterLenghtPrompt variable
   characterLengthPrompt = parseInt(prompt('How many characters do you want in your password? Please choose a number between 10 and 64'));
 // The while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. The condition is evaluated before executing the statement. As long as the characterLengthPrompt variable is not returning as null, meaning the user has not clicked on the cancel button the function can go ahead.
